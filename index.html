@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>منيو سماش برجر</title>
+<meta name="description" content="منيو رقمي تجريبي لمطعم سماش برجر مع الطلب عبر واتساب">
+<meta name="theme-color" content="#11100D">
+<link rel="icon" href="assets/img/logo-47035448.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top" aria-label="Home">
+      <img class="brand-logo" id="brandLogo" src="assets/img/logo-47035448.png" alt="" width="64" height="58">
+      <span class="brand-t"><b id="brandName"></b><small id="brandSub"></small></span>
+    </a>
+    <nav class="top-nav" id="topNav" aria-label="nav"></nav>
+    <div class="top-act">
+      <span class="status" id="status"></span>
+      <button class="ibtn" id="langBtn" type="button" aria-label="Language"></button>
+      <button class="ibtn" id="themeBtn" type="button" aria-label="Theme"></button>
+      <a class="btn btn-gold btn-sm top-cta" id="topCta" href="#menu"></a>
+    </div>
+    <i class="prog" id="prog"></i>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div class="hero-t rv">
+        <span class="kicker" id="kicker"></span>
+        <h1 id="heroTitle"></h1>
+        <p id="heroSub"></p>
+        <div class="hero-btn">
+          <a class="btn btn-gold" id="heroOrder" href="#menu"></a>
+          <a class="btn btn-ghost" id="heroMap" href="#info" ></a>
+          <a class="btn btn-ghost" id="heroCall" href="#"></a>
+        </div>
+        <ul class="perks" id="perks"></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="cats" id="catsBar">
+    <div class="wrap cats-in">
+      <label class="search"><span id="searchIc"></span><input id="q" type="search" autocomplete="off"></label>
+      <nav class="chips" id="chips"></nav>
+    </div>
+  </div>
+
+  <section class="wrap" id="menu"></section>
+
+  <section class="info" id="info">
+    <div class="wrap">
+      <h2 class="h2" id="infoTitle"></h2>
+      <div class="info-grid">
+        <div class="info-card rv">
+          <ul class="info-list" id="infoList"></ul>
+          <div class="info-btn" id="infoBtn"></div>
+        </div>
+        <div class="map rv">
+          <iframe id="mapFrame" title="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="map-fb" id="mapFb" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" id="foot"></footer>
+
+<button class="fab" id="fab" type="button" hidden></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="back" id="back" hidden></div>
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true" hidden></aside>
+
+<script src="js/config.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
