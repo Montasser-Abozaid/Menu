@@ -14,6 +14,8 @@ const store = {
 /* ---------- الأيقونات ---------- */
 const P = {
   cloche: 'M3 18h18M5 18a7 7 0 0 1 14 0M12 8V6M9.5 6h5',
+  fb: 'M7 10v4h3v7h4v-7h3l1-4h-4V8a1 1 0 0 1 1-1h3V3h-3a5 5 0 0 0-5 5v2H7z',
+  ig: 'M8 4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM16.5 7.5h.01',
   plus: 'M12 5v14M5 12h14', minus: 'M5 12h14', x: 'M6 6l12 12M18 6L6 18',
   search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4',
   moon: 'M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z',
@@ -38,7 +40,7 @@ const icFill = (n) => ic(n, 'fill:currentColor;stroke:none');
 /* ---------- النصوص ---------- */
 const TX = {
   ar: {
-    dir: 'rtl', langBtn: 'EN', navMenu: 'المنيو', navLoc: 'الموقع', navCall: 'اتصل بنا', topCta: 'اطلب الآن', hungry: 'جوعان؟ اطلب الآن', hungrySub: 'اختر أطباقك وأرسل الطلب عبر واتساب في دقيقة', fMenu: 'المنيو', fContact: 'تواصل معنا', toTop: 'للأعلى', kicker: 'المنيو الرقمي', heroOrder: 'ابدأ الطلب', heroMap: 'الموقع والخريطة', heroCall: 'اتصل بنا',
+    dir: 'rtl', langBtn: 'EN', navMenu: 'المنيو', navLoc: 'الموقع', navCall: 'اتصل بنا', topCta: 'اطلب الآن', hungry: 'جوعان؟ اطلب الآن', hungrySub: 'اختر أطباقك وأرسل الطلب عبر واتساب في دقيقة', fMenu: 'المنيو', fContact: 'تواصل معنا', toTop: 'للأعلى', kicker: 'المنيو الرقمي', heroOrder: 'اطلب الآن', heroMap: 'الموقع والخريطة', heroCall: 'اتصال', hello: 'أهلاً بك في', qaWa: 'واتساب', qaLoc: 'الموقع', qaFb: 'فيسبوك', qaIg: 'إنستجرام',
     perks: ['الطلب عبر واتساب', 'توصيل أو استلام أو داخل المطعم', 'الموقع على خرائط جوجل'],
     search: 'ابحث عن طبق…', all: 'الكل', from: 'ابتداءً من', noRes: 'لا توجد أصناف مطابقة لبحثك.',
     open: 'مفتوح الآن', closed: 'مغلق الآن', until: 'حتى', opensAt: 'يفتح',
@@ -57,7 +59,7 @@ const TX = {
     dev: 'تصميم وتطوير', am: 'ص', pm: 'م', cur: R.currencyAr, qtyL: 'الكمية'
   },
   en: {
-    dir: 'ltr', langBtn: 'ع', navMenu: 'Menu', navLoc: 'Location', navCall: 'Call us', topCta: 'Order now', hungry: 'Hungry? Order now', hungrySub: 'Pick your dishes and send the order via WhatsApp in a minute', fMenu: 'Menu', fContact: 'Contact us', toTop: 'Back to top', kicker: 'Digital Menu', heroOrder: 'Start your order', heroMap: 'Location & map', heroCall: 'Call us',
+    dir: 'ltr', langBtn: 'ع', navMenu: 'Menu', navLoc: 'Location', navCall: 'Call us', topCta: 'Order now', hungry: 'Hungry? Order now', hungrySub: 'Pick your dishes and send the order via WhatsApp in a minute', fMenu: 'Menu', fContact: 'Contact us', toTop: 'Back to top', kicker: 'Digital Menu', heroOrder: 'Order now', heroMap: 'Location & map', heroCall: 'Call', hello: 'Welcome to', qaWa: 'WhatsApp', qaLoc: 'Location', qaFb: 'Facebook', qaIg: 'Instagram',
     perks: ['Order via WhatsApp', 'Delivery, pickup or dine-in', 'Find us on Google Maps'],
     search: 'Search for a dish…', all: 'All', from: 'From', noRes: 'No dishes match your search.',
     open: 'Open now', closed: 'Closed now', until: 'until', opensAt: 'opens',
@@ -128,13 +130,19 @@ function renderStatic() {
   const on = openState();
   const st = $('#status'); st.className = 'status' + (on ? '' : ' off');
   st.textContent = on ? `${T.open} · ${T.until} ${fmt(R.close)}` : `${T.closed} · ${T.opensAt} ${fmt(R.open)}`;
-  $('#kicker').innerHTML = ic('cloche', 'width:17px;height:17px') + esc(T.kicker);
+  const hs = $('#heroStatus'); hs.className = 'status hstatus' + (on ? '' : ' off'); hs.textContent = st.textContent;
+  $('#heroHello').textContent = T.hello;
   $('#heroTitle').textContent = nm({ ar: R.nameAr, en: R.nameEn });
-  $('#heroSub').textContent = lang === 'ar' ? R.taglineAr : R.taglineEn;
-  $('#heroOrder').innerHTML = icFill('wa') + esc(T.heroOrder);
-  $('#heroMap').innerHTML = ic('pin') + esc(T.heroMap);
+  $('#heroSlogan').textContent = (lang === 'ar' ? R.sloganAr : R.sloganEn) || '';
+  $('#heroOrder').innerHTML = ic('cloche') + esc(T.heroOrder);
   const call = $('#heroCall'); call.innerHTML = ic('phone') + esc(T.heroCall); call.href = 'tel:' + R.phone.replace(/\s/g, '');
-  $('#perks').innerHTML = T.perks.map((p, i) => `<li>${ic(['wa', 'moto', 'pin'][i] === 'wa' ? 'check' : ['', 'moto', 'pin'][i])}${esc(p)}</li>`).join('');
+  const qa = [
+    { href: 'https://wa.me/' + R.whatsapp, icon: icFill('wa'), label: T.qaWa },
+    { href: R.mapsUrl, icon: ic('pin'), label: T.qaLoc },
+    { href: R.facebook, icon: ic('fb'), label: T.qaFb },
+    { href: R.instagram, icon: ic('ig'), label: T.qaIg }
+  ].filter((x) => x.href);
+  $('#quickActions').innerHTML = qa.map((x) => `<a href="${esc(x.href)}" target="_blank" rel="noopener" aria-label="${esc(x.label)}" title="${esc(x.label)}">${x.icon}<span>${esc(x.label)}</span></a>`).join('');
   $('#searchIc').innerHTML = ic('search');
   $('#q').placeholder = T.search;
   $('#infoTitle').textContent = T.info;
@@ -158,7 +166,18 @@ function renderInfo() {
     <a class="paybtn wa wide" href="https://wa.me/${esc(R.whatsapp)}" target="_blank" rel="noopener"><span class="pl">${icFill('wa')}<b>WhatsApp</b></span><span class="pt">${esc(T.waBtn)}</span></a>`;
 }
 /* يجعل صف أيقونات التواصل بعرض اسم المطعم بالضبط */
-function syncSoc() { const n = $('.f-name'), s = $('.f-soc'); if (n && s) s.style.width = Math.ceil(n.getBoundingClientRect().width) + 'px'; }
+function syncSoc() {
+  const n = $('.f-name'), s = $('.f-soc'); if (!n || !s) return;
+  let w = n.getBoundingClientRect().width;
+  /* ديسكتوب وتابلت عريض: من أول الجملة إلى آخرها في سطر حقوق النشر فوق الأيقونات */
+  const c = $('.f-copy.in-brand');
+  if (c && window.innerWidth > 880) {
+    const r = document.createRange(); r.selectNodeContents(c);
+    const rects = [...r.getClientRects()].filter((x) => x.width > 0);
+    if (rects.length) w = Math.max(...rects.map((x) => x.right)) - Math.min(...rects.map((x) => x.left));
+  }
+  s.style.width = Math.ceil(w) + 'px';
+}
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => syncSoc());
 window.addEventListener('resize', () => syncSoc());
 function renderFoot() {
@@ -177,6 +196,8 @@ function renderFoot() {
           <a href="https://wa.me/${esc(R.whatsapp)}" target="_blank" rel="noopener" aria-label="WhatsApp">${icFill('wa')}</a>
           <a href="tel:${esc(tel)}" aria-label="${esc(T.callBtn)}">${ic('phone')}</a>
           <a href="${esc(R.mapsUrl)}" target="_blank" rel="noopener" aria-label="${esc(T.openMaps)}">${ic('pin')}</a>
+          ${R.facebook ? `<a href="${esc(R.facebook)}" target="_blank" rel="noopener" aria-label="Facebook">${ic('fb')}</a>` : ''}
+          ${R.instagram ? `<a href="${esc(R.instagram)}" target="_blank" rel="noopener" aria-label="Instagram">${ic('ig')}</a>` : ''}
         </div>
       </div>
       <div class="f-col"><h4>${esc(T.fContact)}</h4>

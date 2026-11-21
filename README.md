@@ -18,12 +18,14 @@ js/config.js        إعدادات المطعم (الاسم، واتساب، ا�
 js/menu.js          الأقسام والأصناف والأسعار والإضافات
 js/app.js           منطق المنيو والسلة
 assets/img/menu/    صور الأصناف (pN.jpg)
+assets/img/hero-*.jpg  خلفيات الهيرو (ديسكتوب وموبايل)
 assets/fonts/       خطوط Expo Arabic
 ```
 
 ## التعديل
 - **بيانات المطعم:** عدّل `js/config.js`.
 - **الأصناف والأسعار:** عدّل `js/menu.js`، وكل صنف له `id` و`cat` و`ar` و`en` و`price` و`img`.
+- **روابط التواصل:** `facebook` و`instagram` في `js/config.js` (اتركها فارغة لإخفاء الزر).
 - **صورة صنف:** ضع الصورة في `assets/img/menu/` وغيّر مسارها في `img`.
 
 ## التشغيل محليًا

@@ -18,6 +18,10 @@ window.RESTAURANT = {
   whatsapp: '201552503725',
   phone: '+201552503725',
 
+  // حسابات التواصل الاجتماعي (قيم مؤقتة — بدّلها بروابط المطعم الحقيقية؛ اتركها فارغة لإخفاء الزر)
+  facebook: 'https://www.facebook.com/',
+  instagram: 'https://www.instagram.com/',
+
   addressAr: 'شرم الشيخ - حي النور',
   addressEn: 'Sharm El-Sheikh - Al Nour District',
 
